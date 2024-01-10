@@ -1,20 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { View } from "react-native";
+import OnBoard from "./components/OnBoard";
+import { useState } from "react";
+import Signup from "./components/Signup";
 
-export default function App() {
+
+
+export default function App(){
+
+  const [showOnboard, setShowOnboard] = useState(true);
+
+  const onBoardDone = ()=>{
+    setShowOnboard(false)
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    <>
+      {
+        showOnboard && <OnBoard boardingDone= {onBoardDone}/>
+      },
+       {
+        !showOnboard && <Signup/>
+      }
+    </>
+    
+    )
+  
+  }
